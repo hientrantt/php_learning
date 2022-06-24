@@ -24,7 +24,7 @@ if ($connection != null) {
           </tr>
         </thead>
         <tbody>';
-
+        
     foreach ($customers as $customer) {
       echo "<tr>";
       echo '<th scope="row">'.$customer["id"].'</th>';
@@ -33,6 +33,12 @@ if ($connection != null) {
       echo '<td>'.$customer["email"] ?? "" .'</td>';
       echo '<td>'.$customer["status"] ?? "" .'</td>';
       echo '<td>'.$customer["isAdmin"] ?? "" .'</td>';
+
+      // $name = $customer['name'] ?? "";
+      // $phone = $customer['phone'] ?? "";
+      // $email = $customer['email'] ?? "";
+      // $status = $customer['status'] ?? "";
+      // $isAdmin = $customer['isAdmin'] ?? "";
       echo "</tr>";
     }
 

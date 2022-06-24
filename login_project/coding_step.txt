@@ -7,8 +7,11 @@ Pages:
 step:  
   1: tạo giao diện cho login page.
   2: get data from input, validate input value, show data from input.
-  3: get data form database -> show list user. (select)
+  3: get data form database -> show list user in admin page. (select)
   4: check input account and database account (select)-> true -> điều hướng web đến home|admin page
+    so sánh xem email và password có trùng nhau hay ko?
+    if isAdmin == 1 -> điều hướng đến admin page (trang quản lý danh sách user)
+    else -> điều hướng đến home page (cho phép user chỉnh sửa thông tin cá nhân)
   5: lưu cookies, session
   6: register: add new user to database (insert into)
   7: forget password: if name, phone, email is correct -> change password (select -> update password) else X
