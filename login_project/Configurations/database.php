@@ -16,4 +16,19 @@
   } finally{
     // auto executed
   }
+
+  function getQueryFromDb($connection, $queryStatement){
+    $list = null;
+    if ($connection != null) {
+      try {
+        $statement = $connection->prepare($queryStatement);
+        $statement->execute();
+        $result = $statement->setFetchMode(PDO::FETCH_ASSOC);
+        $list = $statement->fetchAll();
+      } catch (PDOException $e) {
+        echo $e->getMessage();
+      }
+    }
+    return $list;
+  }
 ?>

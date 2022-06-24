@@ -98,14 +98,6 @@ if (isset($_POST['submit'])) {
     }
 }
 
-function testInput($inputValue)
-{
-    $inputValue = trim($inputValue);
-    $inputValue = stripslashes($inputValue);
-    $inputValue = htmlspecialchars($inputValue);
-    return $inputValue;
-}
-
 ?>
 
 <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="formLogin">
@@ -130,10 +122,10 @@ function testInput($inputValue)
   </div>
   <div class="form-group">
     <small class="form-text text-warning d-block"><?php echo $loginStatus?></small>
-    <a href="./register.php">Register</a>
+    <a href="./register.php">Register</a> | <a href="./forgotPassword.php">Forgot password</a> 
   </div>
   <div class="form-group d-flex justify-content-between">
-  <input name="submit" value="Submit" id="loginSubmit" type="submit" class="btn btn-primary" />
+  <input name="submit" value="Login" id="loginSubmit" type="submit" class="btn btn-primary" />
     <input type="submit" value="Clear my cookies" name="submitClear" id="clearCookiesBtn" class="btn btn-warning"/>
   </div>
 </form>

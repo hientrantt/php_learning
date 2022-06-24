@@ -1,4 +1,7 @@
-<?php include('../Configurations/database.php')?>
+<?php 
+    include('../Configurations/database.php');
+    include '../Configurations/getInput.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
