@@ -12,7 +12,10 @@ step:
     so sánh xem email và password có trùng nhau hay ko?
     if isAdmin == 1 -> điều hướng đến admin page (trang quản lý danh sách user)
     else -> điều hướng đến home page (cho phép user chỉnh sửa thông tin cá nhân)
-  5: lưu cookies, session
+  5: lưu cookies: lưu email khi đăng nhập, xóa all cookies 
+     lưu session: lưu thông tin người dùng đã đăng nhập
+     kiểm tra login user trước khi truy cập admin page, home page bằng url
+     logout in home page and admin page
   6: register: add new user to database (insert into)
   7: forget password: if name, phone, email is correct -> change password (select -> update password) else X
   8: home page: quản lí thông tin cá nhân (thêm, sửa) (select -> update)

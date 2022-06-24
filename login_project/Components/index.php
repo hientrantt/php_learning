@@ -2,11 +2,23 @@
 require("./header.php");
 ?>
 
-<h2>Form LOGIN</h2>
+<div>
+  <h2>Form LOGIN</h2>
+</div>
 
 <?php
 
-$email = $password = "";
+if(isset($_POST['submitClear'])){
+    foreach($_COOKIE as $key => $value){
+        setcookie($key, "", time()-1);
+    }
+    $email =  "";
+}else{
+    $email = $_COOKIE['loginEmail'] ?? "";
+}
+
+$password = "";
+$emailCheck = false;
 $emailError = $passwordError = $loginStatus = "";
 
 if (isset($_POST['submit'])) {
@@ -23,6 +35,11 @@ if (isset($_POST['submit'])) {
     $password = htmlspecialchars($_POST['loginInputPassword']);
     if (empty($password)){
         $passwordError = "Password is required";
+    }
+
+    if(isset($_POST['rememberEmailCheck'])){
+        $emailCheck = $_POST['rememberEmailCheck'];
+        setcookie("loginEmail", $email, time() + 60*60*2); //lưu email trong 2h
     }
 
     if($emailError=="" && $passwordError==""){
@@ -48,12 +65,19 @@ if (isset($_POST['submit'])) {
             }
         }
 
+        //destroy all session
+        session_start();
+        session_destroy();
+        
+        //restart session
+        session_start();
         if($userLogin!=null){
             if($password!=$userLogin['password']){
                 $loginStatus = "Password wrong";
             }else if($userLogin['status']==0){
                 $loginStatus = "This account was blocked";
             }else{
+                $_SESSION['userLogin'] = $userLogin;
                 switch($userLogin['isAdmin']){
                     case 0:
                         $loginStatus = "Customer";
@@ -85,21 +109,33 @@ function testInput($inputValue)
 ?>
 
 <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="formLogin">
-    <div class="form-group">
-        <label for="loginInputEmail1">Email address</label>
-        <input name="loginInputEmail" type="email" class="form-control <?php echo !empty($emailError)?'is-invalid':''?>" id="loginInputEmail1" value="<?php echo $email?>" placeholder="Enter email">
-        <small class="form-text text-danger"><?php echo $emailError?></small>
-    </div>
-    <div class="form-group">
-        <label for="loginInputPassword1">Password</label>
-        <input name="loginInputPassword" type="password" class="form-control <?php echo !empty($passwordError)?'is-invalid':''?>" id="loginInputPassword1" value="<?php echo $password?>" placeholder="Password">
-        <small class="form-text text-danger"><?php echo $passwordError?></small>
-    </div>
-    <div class="form-group">
-        <small class="form-text text-warning d-block"><?php echo $loginStatus?></small>
-        <a href="./register.php">Register</a>
-    </div>
-    <input name="submit" value="submit" id="loginSubmit" type="submit" class="btn btn-primary" />
+  <div class="form-group">
+    <label for="loginInputEmail">Email address</label>
+    <input name="loginInputEmail" type="email" class="form-control <?php echo !empty($emailError)?'is-invalid':''?>"
+      id="loginInputEmail" value="<?php echo $email?>" placeholder="Enter email">
+    <small class="form-text text-danger"><?php echo $emailError?></small>
+  </div>
+
+  <div class="form-group">
+    <label for="loginInputPassword">Password</label>
+    <input name="loginInputPassword" type="password"
+      class="form-control <?php echo !empty($passwordError)?'is-invalid':''?>" id="loginInputPassword"
+      value="<?php echo $password?>" placeholder="Password">
+    <small class="form-text text-danger"><?php echo $passwordError?></small>
+  </div>
+  <div class="mb-3 form-check">
+    <input name="rememberEmailCheck" value="true" <?php echo $emailCheck? 'checked':''?> type="checkbox"
+      class="form-check-input" id="loginCheckRememberEmail">
+    <label class="form-check-label" for="loginCheckRememberEmail">Remenber my email</label>
+  </div>
+  <div class="form-group">
+    <small class="form-text text-warning d-block"><?php echo $loginStatus?></small>
+    <a href="./register.php">Register</a>
+  </div>
+  <div class="form-group d-flex justify-content-between">
+  <input name="submit" value="Submit" id="loginSubmit" type="submit" class="btn btn-primary" />
+    <input type="submit" value="Clear my cookies" name="submitClear" id="clearCookiesBtn" class="btn btn-warning"/>
+  </div>
 </form>
 
 <?php
