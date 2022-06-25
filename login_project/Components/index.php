@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
     }
 
     if($emailError=="" && $passwordError==""){
-        $sql = "SELECT name, email, password, status, isAdmin FROM user";
+        $sql = "SELECT * FROM user";
         $userLogin = null;
         if ($connection != null) {
             try {
@@ -125,7 +125,7 @@ if (isset($_POST['submit'])) {
     <a href="./register.php">Register</a> | <a href="./forgotPassword.php">Forgot password</a> 
   </div>
   <div class="form-group d-flex justify-content-between">
-  <input name="submit" value="Login" id="loginSubmit" type="submit" class="btn btn-primary" />
+    <input name="submit" value="Login" id="loginSubmit" type="submit" class="btn btn-primary" />
     <input type="submit" value="Clear my cookies" name="submitClear" id="clearCookiesBtn" class="btn btn-warning"/>
   </div>
 </form>

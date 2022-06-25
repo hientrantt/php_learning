@@ -24,6 +24,10 @@ INSERT INTO `php_learning`.`user` (`name`, `phone`, `email`, `password`, `status
 
 SELECT * FROM php_learning.user;
 
+ALTER TABLE `php_learning`.`user` 
+ADD COLUMN `avatar` VARCHAR(255) NULL DEFAULT NULL AFTER `isAdmin`;
+
+
 
 -- http://localhost/php_learning/login_project/Components/
 -- 0: block

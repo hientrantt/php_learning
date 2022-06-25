@@ -71,9 +71,9 @@ if (isset($_POST['submit'])) {
       $statusDefault = 1;
       $isAdminDefault = 0;
 
-      $sql = "INSERT INTO user (name, email, password, status, isAdmin) VALUES (?,?,?,?,?)";
+      $sql = "INSERT INTO user (name, email, phone, password, status, isAdmin) VALUES (?,?,?,?,?,?)";
       $statement = $connection->prepare($sql);
-      $statement->execute([$name, $email, $password, $statusDefault, $isAdminDefault]);
+      $statement->execute([$name, $email, $phone, $password, $statusDefault, $isAdminDefault]);
       header("Location: index.php");
     }
   }

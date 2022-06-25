@@ -21,7 +21,11 @@ if (isset($_POST['submitConfirm'])){
   $email = testInput($_POST['inputEmail']);
   if (empty($email)) {
     $emailError = "Email is required";
-  }
+  }else {
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $emailError = "Invalid email format";
+    }
+}
 
   $phone = testInput($_POST['inputPhone']);
   if (empty($phone)) {

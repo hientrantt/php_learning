@@ -20,5 +20,5 @@ step:
       kiểm tra xem email và phone đăng ký đã exist hay chưa? (select)
       add new user to database (insert into)
   7: forgot password: if name, phone, email is correct -> change password (select -> update password) else X
-  8: home page: quản lí thông tin cá nhân (thêm, sửa) (select -> update)
+  8: home page: quản lí thông tin cá nhân (thêm, sửa thông tin cá nhân , xóa tài khoản) (select -> update)
   9: admin page: quản lí các người dùng (thêm, sửa, xóa, block). (select -> update | delete)

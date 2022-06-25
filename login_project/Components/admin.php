@@ -17,7 +17,8 @@ if (isset($_POST['submitLogout'])) {
 ?>
 
 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST" name="adminForn">
-  <div class="d-flex justify-content-end">
+  <div class="d-flex justify-content-end align-items-end"">
+    <a href="./home.php">Home page</a>
     <input name="submitLogout" type="submit" value="Logout" class="btn btn-primary" />
   </div>
   <?php
