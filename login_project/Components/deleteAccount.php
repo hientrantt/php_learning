@@ -51,7 +51,7 @@ if (isset($_POST['submitDeleteAccount'])) {
 }
 ?>
 
-<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" name="confirmDeleteAccountForn">
+<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" name="confirmDeleteAccountForn" onkeydown="return event.key != 'Enter';">
   <h4 class="text-danger text-center">Are you sure want to delete your account???</h4>
 
   <div class="form-group">

@@ -148,9 +148,14 @@ if (isset($_POST['submitSave'])) {
 
 ?>
 
-<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" name="homeForn" enctype="multipart/form-data">
+<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" name="homeForn" enctype="multipart/form-data" onkeydown="return event.key != 'Enter';">
 
-  <div class="d-flex justify-content-end">
+  <div class="d-flex justify-content-end align-items-end">
+    <?php 
+      if($userLogin['isAdmin']){
+        echo '<a href=" ./admin.php">Admin page</a>';
+      }
+    ?>
     <input name="submitLogout" type="submit" value="Logout" class="btn btn-primary" />
     <input name="submitDeleteAccount" value="Delete Account" type="submit" class="btn btn-danger"/>
   </div>

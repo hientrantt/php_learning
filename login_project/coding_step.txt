@@ -1,5 +1,5 @@
 Database (mysql):
-  user: id, name, phone, email, password, status, isAdmin
+  user: id, name, phone, email, password, status, isAdmin, $avatar
 
 Pages:
   form register, login, forget password, admin page, home page (個人情報を管理：修理できる)
@@ -21,4 +21,4 @@ step:
       add new user to database (insert into)
   7: forgot password: if name, phone, email is correct -> change password (select -> update password) else X
   8: home page: quản lí thông tin cá nhân (thêm, sửa thông tin cá nhân , xóa tài khoản) (select -> update)
-  9: admin page: quản lí các người dùng (thêm, sửa, xóa, block). (select -> update | delete)
+  9: admin page: quản lí các người dùng (xem thông tin người dùng trong hệ thống)

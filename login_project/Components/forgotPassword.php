@@ -73,7 +73,7 @@ if (isset($_POST['submitReset'])) {
 <?php
 if (!strcmp($formStr, FORM_CONFIRM)) {
 ?>
-  <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="<?echo FORM_CONFIRM?>">
+  <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="<?echo FORM_CONFIRM?>" onkeydown="return event.key != 'Enter';">
     <div class="form-group">
       <label for="inputName">User name</label>
       <input name="inputName" type="text" class="form-control <?php echo !empty($nameError) ? 'is-invalid' : '' ?>" id="inputName" value="<?php echo $name ?>" placeholder="Enter user name">
@@ -104,7 +104,7 @@ if (!strcmp($formStr, FORM_CONFIRM)) {
 <?php
 } else if (!strcmp($formStr, FORM_RESET)) {
 ?>
-  <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="<?echo FORM_RESET?>">
+  <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="<?echo FORM_RESET?>" onkeydown="return event.key != 'Enter';">
     <div class="form-group">
       <label for="inputPassword">Password</label>
       <input name="inputPassword" type="password" class="form-control <?php echo !empty($passwordError) ? 'is-invalid' : '' ?>" id="inputPassword" value="<?php echo $password ?>" placeholder="Password">

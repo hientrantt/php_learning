@@ -81,7 +81,7 @@ if (isset($_POST['submit'])) {
 
 ?>
 
-<form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="formRegister">
+<form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="formRegister" onkeydown="return event.key != 'Enter';">
   <div class="form-group">
     <label for="registerInputName">User name</label>
     <input name="registerInputName" type="text" class="form-control <?php echo !empty($nameError) ? 'is-invalid' : '' ?>" id="registerInputName" value="<?php echo $name ?>" placeholder="Enter user name">

@@ -4,7 +4,8 @@ create table php_learning.user(
   email varchar(31),
   password varchar(31),
   status int,
-  isAdmin boolean
+  isAdmin boolean,
+  avatar varchar(255)
 );
 
 ALTER TABLE `php_learning`.`user` 
@@ -30,5 +31,5 @@ ADD COLUMN `avatar` VARCHAR(255) NULL DEFAULT NULL AFTER `isAdmin`;
 
 
 -- http://localhost/php_learning/login_project/Components/
--- 0: block
--- 1: active
+-- status:  0: block | 1: active
+-- isAdmin:  0: user | 1: admin

@@ -16,13 +16,14 @@ if (isset($_POST['submitLogout'])) {
 }
 ?>
 
-<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST" name="adminForn">
+<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" name="adminForn"
+  onkeydown="return event.key != 'Enter';">
   <div class="d-flex justify-content-end align-items-end"">
-    <a href="./home.php">Home page</a>
+    <a href=" ./home.php">Home page</a>
     <input name="submitLogout" type="submit" value="Logout" class="btn btn-primary" />
   </div>
   <?php
-  $sql = "SELECT id, name, phone, email, status, isAdmin FROM user";
+  $sql = "SELECT * FROM user";
   if ($connection != null) {
     try {
       $statement = $connection->prepare($sql);
@@ -38,7 +39,8 @@ if (isset($_POST['submitLogout'])) {
             <th scope="col">Phone</th>
             <th scope="col">Email</th>
             <th scope="col">Status</th>
-            <th scope="col">IsAdmin</th>
+            <th scope="col">Type</th>
+            <th scope="col">Avatar</th>
           </tr>
         </thead>
         <tbody>';
@@ -49,8 +51,30 @@ if (isset($_POST['submitLogout'])) {
         echo '<td>' . $customer["name"] ?? "" . '</td>';
         echo '<td>' . $customer["phone"] ?? "" . '</td>';
         echo '<td>' . $customer["email"] ?? "" . '</td>';
-        echo '<td>' . $customer["status"] ?? "" . '</td>';
-        echo '<td>' . $customer["isAdmin"] ?? "" . '</td>';
+
+        if ($customer["status"] == 0) {
+          $statusStr = "Block";
+          $color = "text-danger";
+        } else if ($customer["status"] == 1) {
+          $statusStr = "Active";
+          $color = "text-success";
+        }
+        echo '<td class='.$color.'>'. $statusStr . '</td>';
+
+        if ($customer["isAdmin"] == 0) {
+          $typeStr = "User";
+        } else if ($customer["isAdmin"] == 1) {
+          $typeStr = "Admin";
+        }
+        echo '<td>' . $typeStr . '</td>';
+
+        if(!empty($customer["avatar"])){
+          $avatarStr = '<img src=' . $customer["avatar"] . ' class="img-fluid img-thumbnai" style="height:50px" alt="avatar">';
+        }else{
+          $avatarStr = "Unset";
+        }
+        echo '<td>' . $avatarStr . '</td>';
+        
         echo "</tr>";
       }
 

@@ -100,7 +100,7 @@ if (isset($_POST['submit'])) {
 
 ?>
 
-<form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="formLogin">
+<form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" name="formLogin" onkeydown="return event.key != 'Enter';">
   <div class="form-group">
     <label for="loginInputEmail">Email address</label>
     <input name="loginInputEmail" type="email" class="form-control <?php echo !empty($emailError)?'is-invalid':''?>"
